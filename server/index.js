@@ -1,23 +1,28 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const {SERVER_PORT} = process.env
-const {seed} = require('./seed.js')
-const {getUserInfo, updateUserInfo, getUserAppt, requestAppointment} = require('./controller.js')
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const { SERVER_PORT } = process.env;
+const { seed } = require("./seed.js");
+const {
+  getUserInfo,
+  updateUserInfo,
+  getUserAppt,
+  requestAppointment,
+} = require("./controller.js");
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
 // DEV
-// app.post('/seed', seed)
+app.post("/seed", seed);
 
 // USER
-// app.get('/user', getUserInfo)
-// app.put('/user', updateUserInfo)
+app.get("/user", getUserInfo);
+app.put("/user", updateUserInfo);
 
 // APPOINTMENTS
-// app.get('/appt', getUserAppt)
-// app.post('/appt', requestAppointment)
+app.get("/appt", getUserAppt);
+app.post("/appt", requestAppointment);
 
-app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
+app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`));
